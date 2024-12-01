@@ -36,22 +36,22 @@ class Bank:
 
     def deposit(self):
         for _ in range(100):
-            nums = randint(50, 500)
-            self.balance += nums
-            print(f'Пополнение:{nums}.Баланс:{self.balance}')
+            nb = randint(50, 500)
+            self.balance += nb
+            print(f'Пополнение:{nb}.Баланс:{self.balance}')
             if self.balance >= 500 and self.lock.locked():
                 self.lock.release()
             sleep(0.001)
 
     def take(self):
         for _ in range(100):
-            nums = randint(50, 500)
-            print(f'Запрос на случайное число:{nums}')
-            if nums <= self.balance:
-                self.balance -= nums
-                print(f'Снятие:{nums}.Баланс:{self.balance}')
+            nb = randint(50, 500)
+            print(f'Запрос на {nb}')
+            if nb <= self.balance:
+                self.balance -= nb
+                print(f'Снятие:{nb}.Баланс:{self.balance}')
             else:
-                print('Запрос отклонен, недостаточно средств')
+                print(f'Запрос отклонен,недостаточно средств')
                 self.lock.acquire()
                 sleep(0.001)
 
@@ -67,3 +67,4 @@ th1.join()
 th2.join()
 
 print(f'Баланс:{bk.balance}')
+
