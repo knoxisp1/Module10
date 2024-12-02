@@ -25,12 +25,12 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
-        for guest in guests:  # добавляем в очередь гостей
+        for guest in guests: 
             examination = False
-            for table in self.tables:  # перебираем все столы в очереди
-                if table.guest is None:  # если стол свободен
-                    table.guest = guest  # сажаем гостя за стол
-                    guest.start()  # запускаем гостя в отдельном потоке
+            for table in self.tables:  
+                if table.guest is None:  
+                    table.guest = guest  
+                    guest.start()  
                     print(f"{guest.name} сел(-а) за стол номер {table.number}")
                     examination = True
                     break
